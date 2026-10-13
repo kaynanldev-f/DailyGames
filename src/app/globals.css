@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-zinc: #18181b;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+}
