@@ -9,7 +9,7 @@ export default function Header() {
       <Container>
         <div className="flex items-baseline justify-center sm:justify-between ">
           <nav className="flex items-center gap-4 text-zinc font-bold">
-            <Link href="/jogos">
+            <Link href="/">
               <Image
                 src={"/logo.svg"}
                 alt="Logo"
