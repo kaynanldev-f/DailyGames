@@ -4,6 +4,7 @@ import { GameProps } from "@/utils/types/game";
 import Link from "next/link";
 import { getDalyGame } from "@/actions/gameActions";
 import { BsArrowRightSquare } from "react-icons/bs";
+import InputSearch from "@/components/inputSearch";
 export default async function Home() {
   const dalyGame: GameProps = await getDalyGame();
 
@@ -32,6 +33,7 @@ export default async function Home() {
             </div>
           </section>
         </Link>
+        <InputSearch />
       </Container>
     </main>
   );
