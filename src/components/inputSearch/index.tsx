@@ -11,7 +11,7 @@ export default function InputSearch() {
   function handleSearch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (search === "") return;
-    router.push(`/search/${search}`);
+    router.push(`/game/search/${search}`);
   }
   return (
     <form
