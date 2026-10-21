@@ -5,7 +5,7 @@ import { BiRightArrowCircle } from "react-icons/bi";
 export default function GameCard({ game }: { game: GameProps }) {
   return (
     <Link
-      href={`/game/${game.id}`}
+      href={`/game/details/${game.id}`}
       className="w-full bg-slate-200 p-3 rounded-lg hover:scale-105 transition-transform duration-300"
     >
       <div className="w-full relative h-58  rounded-lg">
