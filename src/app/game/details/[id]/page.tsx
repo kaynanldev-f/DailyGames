@@ -5,11 +5,55 @@ import { getDailyGame } from "@/actions/gameActions";
 import Container from "@/components/container";
 import { redirect } from "next/navigation";
 import GameCard from "@/components/gameCard";
+import { Metadata } from "next";
 
-type PageProps = {
+export async function generateMetadata({
+  params,
+}: {
   params: Promise<{ id: string }>;
-};
-export default async function detailsPage({ params }: PageProps) {
+}): Promise<Metadata> {
+  "use cache";
+  try {
+    const { id } = await params;
+    const response: GameDetailsProps = await fetch(
+      `${process.env.NEXT_API_URL}/next-api/?api=game&id=${id}`,
+    ).then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      return res.json();
+    });
+
+    return {
+      title: `DalyGames - ${response.title}`,
+      description: `${response.description.slice(0, 100)}...`,
+      openGraph: {
+        title: response.title,
+        images: [response.image_url],
+      },
+      robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          noimageindex: true,
+        },
+      },
+    };
+  } catch (err) {
+    return {
+      title: "DalyGames - Descubra jogos incríveis para se divertir",
+    };
+  }
+}
+export default async function detailsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const gameId: GameDetailsProps = await getGameId(id);
   const dailyGame: GameProps = await getDailyGame();
@@ -17,7 +61,6 @@ export default async function detailsPage({ params }: PageProps) {
   if (!gameId) {
     redirect("/");
   }
-  console.log(gameId);
   return (
     <main className="mb-20">
       <div className="w-full h-96 bg-black relative">
