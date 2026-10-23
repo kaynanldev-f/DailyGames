@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "../container";
 import Image from "next/image";
-import { LiaGamepadSolid } from "react-icons/lia";
+import { FiUser } from "react-icons/fi";
 
 export default function Header() {
   return (
@@ -23,8 +23,8 @@ export default function Header() {
             <Link href="/perfil">Perfil</Link>
           </nav>
           <div className="hidden sm:flex items-center gap-4 text-zinc font-bold">
-            <Link href="/jogos">
-              <LiaGamepadSolid size={24} color="#18181b" />
+            <Link href="/perfil">
+              <FiUser size={24} color="#18181b" />
             </Link>
           </div>
         </div>
